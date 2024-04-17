@@ -20,26 +20,22 @@ the complete version in the `solution` subdirectory.
 ## Part A: Configure a Codec Server to Use Your Data Converter
 
 1. First, you'll review a barebones Codec Server implementation in Python, and
-   make the necessary changes to integrate the custom data converter from
+   make the necessary changes to integrate the Custom Data Converter from
    Exercise 1. Examine the `codec-server.py`. This file contains a complete HTTP
    server implementation using Python's
    [AIOHTTP](https://docs.aiohttp.org/en/stable/) library. It listens on
    endpoints at `/{namespace}/encode` and `/{namespace}/decode` as expected by
-   the Temporal CLI, Web UI, and SDKs, and contains stubs for OIDC and CORS
-   enablement. These are the baseline requirements for a Temporal Codec Server,
-   which can be implemented using standard HTTP functionality in any language of
-   your choosing.
-2. Temporal Codec Servers need, at minimum, one additional configuration detail
-   before they can be deployed from sample code. Specifically, Codec Servers
-   need to import the Converter logic from your own application, and then map
-   the Converter logic on a per-Namespace basis. Add an `import` statement at
-   the top of `codec-server.py` to import the `EncryptionCodec` class from
+   the Temporal CLI, Web UI, and SDKs. This Codec Server needs one additional
+   configuration detail before it can be deployed from sample code -- it needs
+   to import the Codec logic from your own application, and then map the
+   Converter logic on a per-Namespace basis. Add an `import` statement at the
+   top of `codec-server.py` to import the `EncryptionCodec` class from
    `codec.py`.
-3. Next in `codec-server.py`, create a dictionary named `codecs` after initializing
+2. Next in `codec-server.py`, create a dictionary named `codecs` after initializing
    your `app` and before setting endpoints on it with `add_routes()` . Keys should
    be Namespace strings. Values should be Codec classes. By default, you only need
    to assign the `default` namespace to `EncryptionCodec()` from this example.
-4. After making these additions, you should have a functioning Codec Server,
+3. After making these additions, you should have a functioning Codec Server,
    integrated with your application logic. Again, everything else in here is
    configured as generically as possible — note that this example Codec Server
    listens on port 8081, which is usually used in testing configurations — but
@@ -52,21 +48,21 @@ the complete version in the `solution` subdirectory.
    ```
 
    This will block the terminal it runs in, and await connections.
-5. Now you can run your Custom Converter Workflow with the addition of data
+4. Now you can run your Custom Converter Workflow with the addition of data
    decoding. First, start the Worker:
 
    ```shell
    python worker.py
    ```
 
-6. Next, from another terminal, run the Workflow starter:
+5. Next, from another terminal, run the Workflow starter:
 
    ```shell
    python starter.py
    ```
 
    The workflow should complete successfully without further modification.
-7. Finally, run `temporal workflow show` for this exercise, with a
+6. Finally, run `temporal workflow show` for this exercise, with a
    `--codec-endpoint`:
 
    ```

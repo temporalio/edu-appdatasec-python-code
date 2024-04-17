@@ -1,9 +1,9 @@
-# Exercise 1: Implement a Custom Data Converter
+# Exercise 1: Implementing a Custom Codec
 
 During this exercise, you will: 
 
-* Output typical payloads from a Temporal Workflow using the default Data Converters
-* Implement a Custom Codec that encrypts Workflow output
+* Output typical payloads from a Temporal Workflow using the default Data Converter
+* Implement a Custom Codec that compresses Workflow output
 * Implement a Failure Converter and demonstrate parsing its output
 
 Make your changes to the code in the `practice` subdirectory (look for 
@@ -81,19 +81,13 @@ the complete version in the `solution` subdirectory.
   The `payload encoding is not supported` message is normal — the Temporal
   Cluster itself can't use the `Decode` function directly without a Codec
   Server, which you'll create in the next exercise. In the meantime, you have
-  successfully implemented Custom Data Conversion, and in the next step, you'll
-  add another feature. 
+  successfully customized your Data Converter with a codec, and in the next
+  step, you'll add more features to it.
 
 
 ## Part B: Implement a Failure Converter
 
-1. The next feature you may add is a Failure Converter. Failure messages and
-   stack traces are not encoded as codec-capable Payloads by default; you must
-   explicitly enable encoding these common attributes on failures. If your
-   errors might contain sensitive information, you can encrypt the message and
-   stack trace by configuring the default Failure Converter to use your encoded
-   attributes, in which case it moves your message and stack_trace fields to a
-   Payload that's run through your codec. To do this, you add a
+1. The next feature you may add is a Failure Converter. To do this, you add a
    `failure_converter_class` option to your `Client.connect()` call. Make this
    change to `client.Dial()` where it is used in both `starter.py` and
    `worker.py`, as you did before.
