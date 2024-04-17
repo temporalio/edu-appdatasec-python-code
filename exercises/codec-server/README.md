@@ -8,6 +8,9 @@ During this exercise, you will:
 * Integrate your Codec Server with the Temporal Web UI
 * Securely return decoded results in the CLI and the Web UI
 
+**Note: Part B of this Exercise does not work in the Gitpod Environment.**
+If you want to demonstrate Codec Server Web UI integration, you'll need to clone this repository and run the exercise locally.
+
 Make your changes to the code in the `practice` subdirectory (look for 
 `TODO` comments that will guide you to where you should make changes to 
 the code). If you need a hint or want to verify your changes, look at 
@@ -36,18 +39,42 @@ the complete version in the `solution` subdirectory.
    your `app` and before setting endpoints on it with `add_routes()` . Keys should
    be Namespace strings. Values should be Codec classes. By default, you only need
    to assign the `default` namespace to `EncryptionCodec()` from this example.
-5. After making these additions, you should have a functioning Codec Server,
+4. After making these additions, you should have a functioning Codec Server,
    integrated with your application logic. Again, everything else in here is
    configured as generically as possible — note that this example Codec Server
    listens on port 8081, which is usually used in testing configurations — but
    this fulfills all the requirements of a Temporal Codec Server, and you could
    incorporate any other authentication requirements on top of HTTP as needed.
-   Run your Codec Server with `python codec-server.py` from the root of your
-   project directory. This will block the terminal it runs in, and await
-   connections.
-6. Now you can retrieve the decoded output of your Workflow Execution from the
-   previous Exercise. From another terminal window, run `temporal workflow show \
-   -w encryption-workflow-id --codec-endpoint 'http://localhost:8081/{namespace}'`.
+   Run your Codec Server from the root of your project directory with:
+   
+   ```shell
+   python codec-server.py
+   ```
+
+   This will block the terminal it runs in, and await connections.
+5. Now you can run your Custom Converter Workflow with the addition of data
+   decoding. First, start the Worker:
+
+   ```shell
+   python worker.py
+   ```
+
+6. Next, from another terminal, run the Workflow starter:
+
+   ```shell
+   python starter.py
+   ```
+
+   The workflow should complete successfully without further modification.
+7. Finally, run `temporal workflow show` for this exercise, with a
+   `--codec-endpoint`:
+
+   ```
+   temporal workflow show \
+      --workflow-id converters_workflowID \
+      --codec-endpoint 'http://localhost:8081/{namespace}'
+   ```
+
    It should retain the same Event History as before, with the decoded result
    appended to the output:
 
