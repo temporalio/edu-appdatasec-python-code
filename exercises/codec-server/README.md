@@ -48,7 +48,7 @@ course is activated as detailed in the course [README](../../README.md#setup-you
    Run your Codec Server from the root of your project directory with:
    
    ```shell
-   python codec-server.py
+   python codec_server.py
    ```
 
    This will block the terminal it runs in, and await connections.
@@ -71,7 +71,7 @@ course is activated as detailed in the course [README](../../README.md#setup-you
 
    ```
    temporal workflow show \
-      --workflow-id converters_workflowID \
+      --workflow-id encryption-workflow-id \
       --codec-endpoint 'http://localhost:8081/{namespace}'
    ```
 
