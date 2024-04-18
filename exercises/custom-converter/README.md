@@ -11,6 +11,10 @@ Make your changes to the code in the `practice` subdirectory (look for
 the code). If you need a hint or want to verify your changes, look at 
 the complete version in the `solution` subdirectory.
 
+### Activate the Virtual Environment
+Ensure that the virtual environment you setup at the beginning of the
+course is activated as detailed in the course [README](../../README.md#setup-your-python-virtual-environment).
+
 
 ## Part A: Implement a Custom Codec
 
