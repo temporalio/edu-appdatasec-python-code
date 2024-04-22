@@ -17,7 +17,7 @@ from aiohttp import hdrs, web
 from google.protobuf import json_format
 from temporalio.api.common.v1 import Payload, Payloads
 
-from codec import EncryptionCodec
+from codec import CompressionCodec
 
 def build_codec_server(arguments) -> web.Application:
     async def header_options(req: web.Request) -> web.Response:
@@ -48,7 +48,7 @@ def build_codec_server(arguments) -> web.Application:
 
     # Build app per-Namespace
     app = web.Application()
-    codecs = {"default":EncryptionCodec()}
+    codecs = {"default":CompressionCodec()}
     for route,codec in codecs.items():
         app.add_routes(
             [

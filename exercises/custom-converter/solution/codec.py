@@ -5,7 +5,7 @@ from temporalio.api.common.v1 import Payload
 from temporalio.converter import PayloadCodec
 
 
-class EncryptionCodec(PayloadCodec):
+class CompressionCodec(PayloadCodec):
     async def encode(self, payloads: Iterable[Payload]) -> List[Payload]:
         return [
             Payload(

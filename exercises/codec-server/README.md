@@ -33,12 +33,12 @@ course is activated as detailed in the course [README](../../README.md#setup-you
    configuration detail before it can be deployed from sample code -- it needs
    to import the Codec logic from your own application, and then map the
    Converter logic on a per-Namespace basis. Add an `import` statement at the
-   top of `codec-server.py` to import the `EncryptionCodec` class from
+   top of `codec-server.py` to import the `CompressionCodec` class from
    `codec.py`.
 2. Next in `codec-server.py`, create a dictionary named `codecs` after initializing
    your `app` and before setting endpoints on it with `add_routes()` . Keys should
    be Namespace strings. Values should be Codec classes. By default, you only need
-   to assign the `default` namespace to `EncryptionCodec()` from this example.
+   to assign the `default` namespace to `CompressionCodec()` from this example.
 3. After making these additions, you should have a functioning Codec Server,
    integrated with your application logic. Again, everything else in here is
    configured as generically as possible — note that this example Codec Server
@@ -71,7 +71,7 @@ course is activated as detailed in the course [README](../../README.md#setup-you
 
    ```
    temporal workflow show \
-      --workflow-id encryption-workflow-id \
+      --workflow-id compression-workflow-id \
       --codec-endpoint 'http://localhost:8081/{namespace}'
    ```
 
