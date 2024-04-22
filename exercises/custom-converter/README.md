@@ -38,7 +38,7 @@ course is activated as detailed in the course [README](../../README.md#setup-you
    After that, you can use the `temporal` CLI to show the Workflow result:
 
    ```shell
-   temporal workflow show -w encryption-workflow-id
+   temporal workflow show -w compression-workflow-id
    ```
 
    ```
@@ -72,7 +72,7 @@ course is activated as detailed in the course [README](../../README.md#setup-you
 4. Now you can re-run the Workflow with your Custom Codec. Stop your Worker
    (with `Ctrl+C` in a blocking terminal) and restart it with `python
    worker.py`, then re-run the workflow with `python starter.py`. Finally,
-   get the result again with `temporal workflow show -w encryption-workflow-id`.
+   get the result again with `temporal workflow show -w compression-workflow-id`.
    This time, your output will be encoded:
 
    ```
@@ -105,7 +105,7 @@ course is activated as detailed in the course [README](../../README.md#setup-you
    ```
 
    Next, try re-running your Workflow, and it should fail.
-3. Run `temporal workflow show -w encryption-workflow-id` to get the status of your
+3. Run `temporal workflow show -w compression-workflow-id` to get the status of your
    failed Workflow. Notice that the `Failure:` field should now display an encoded
    result, rather than a plain text error:
 

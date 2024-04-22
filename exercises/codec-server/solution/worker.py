@@ -6,7 +6,7 @@ from temporalio import workflow
 from temporalio.client import Client
 from temporalio.worker import Worker
 
-from codec import EncryptionCodec
+from codec import CompressionCodec
 
 
 @workflow.defn(name="Workflow")
@@ -24,7 +24,7 @@ async def main():
     client = await Client.connect(
         "localhost:7233",
         data_converter=dataclasses.replace(
-            temporalio.converter.default(), payload_codec=EncryptionCodec(),
+            temporalio.converter.default(), payload_codec=CompressionCodec(),
             failure_converter_class=temporalio.converter.DefaultFailureConverterWithEncodedAttributes,
         ),
     )
@@ -32,7 +32,7 @@ async def main():
     # Run a worker for the workflow
     async with Worker(
         client,
-        task_queue="encryption-task-queue",
+        task_queue="compression-task-queue",
         workflows=[GreetingWorkflow],
     ):
         # Wait until interrupted
