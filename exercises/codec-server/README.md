@@ -108,8 +108,8 @@ course is activated as detailed in the course [README](../../README.md#setup-you
    which can add the necessary headers to your HTTP requests to support CORS,
    but it is not enabled by default. This example Codec Server exposes an
    additional command line parameter, `--web`, to conditionally enable CORS.
-   Restart the Codec Server with the `--web` flag: `python codec-server.py --web
-   localhost:8233`.
+   Restart the Codec Server with the `--web` flag: `python codec_server.py --web
+   http://localhost:8233`.
 2. Now you can proceed to integrate your Codec Server with the Web UI. You
    should already have a local Temporal Cluster running that you can access in a
    browser at `http://localhost:8233` by default. In the top-right corner of the
@@ -119,7 +119,7 @@ course is activated as detailed in the course [README](../../README.md#setup-you
    ![Codec Server settings icon](images/configure-codec-server-button.png)
 
    In the Codec Server settings menu, add the path to your Codec Server, which
-   should be `http://localhost:8081` by default. You do not need to toggle the
+   should be `http://localhost:8081/default` by default. You do not need to toggle the
    user access token settings if you aren't using authentication.
 
    ![Codec Server settings](images/codec-server-settings.png)
