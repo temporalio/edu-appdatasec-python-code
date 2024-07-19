@@ -52,11 +52,11 @@ course is activated as detailed in the course [README](../../README.md#setup-you
 
    Result:
      Status: COMPLETED
-     Output: ["Received Plain text input"]
+     Output: ["Hello, Temporal"]
    ```
 
    You should now have an idea of how this Workflow runs ordinarily — it outputs
-   the string "Received Plain text input". In the next step, you'll add a Custom
+   the string "Hello, Temporal". In the next step, you'll add a Custom
    Codec.
 2. To add a Custom Codec, you don't need to change anything in your Workflow
    code. You only need to add a `data_converter` parameter to `Client.connect()`
