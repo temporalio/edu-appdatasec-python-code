@@ -53,6 +53,7 @@ course is activated as detailed in the course [README](../../README.md#setup-you
    Result:
      Status: COMPLETED
      Output: ["Hello, Temporal"]
+      ResultEncoding  json/plain
    ```
 
    You should now have an idea of how this Workflow runs ordinarily — it outputs
@@ -77,9 +78,10 @@ course is activated as detailed in the course [README](../../README.md#setup-you
 
    ```
    ...
-   Result:
-     Status: COMPLETED
-     Output: [encoding binary/snappy: payload encoding is not supported]
+   Results:
+     Status          COMPLETED
+     Result          {"metadata":{"encoding":"YmluYXJ5L3NuYXBweQ=="},"data":"/wYAAHNOYVBwWQEvAAAkvJdNChYKCGVuY29kaW5nEgpqc29uL3BsYWluEhEiSGVsbG8sIFRlbXBvcmFsIg=="}
+     ResultEncoding  binary/snappy
    ```
 
   The `payload encoding is not supported` message is normal — the Temporal
@@ -93,13 +95,17 @@ course is activated as detailed in the course [README](../../README.md#setup-you
 
 1. The next feature you may add is a Failure Converter. To do this, you add a
    `failure_converter_class` option to your `Client.connect()` call. Make this
-   change to `client.Dial()` where it is used in both `starter.py` and
+   change to `Client.connect` where it is used in both `starter.py` and
    `worker.py`, as you did before.
 2. To test your Failure Converter, change your Workflow to return an artificial
    error. Change the `GreetingWorkflow()` in `worker.py` to throw an error where
    there isn't one, like so:
 
    ```python
+   from temporalio.exceptions import ApplicationError
+
+   ...
+
    async def run(self, name: str) -> str:
       raise ApplicationError("This is designed to fail on purpose")
    ```
