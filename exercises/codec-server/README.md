@@ -83,6 +83,7 @@ course is activated as detailed in the course [README](../../README.md#setup-you
    Result:
      Status: COMPLETED
      Output: ["Hello, Temporal"]
+     ResultEncoding  json/plain
    ```
 
    You now have a working Codec Server implementation. In the following steps,
